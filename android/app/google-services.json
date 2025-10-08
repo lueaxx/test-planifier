@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "526419283550",
+    "project_id": "nexo-studio",
+    "storage_bucket": "nexo-studio.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:526419283550:android:8086b75c9b3fa392f86ecf",
+        "android_client_info": {
+          "package_name": "com.mycompany.planifier"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "526419283550-hrhehdbr44vnb19tvqmgqhhb89151i2l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgIMMc1cfe5Gz2OAjiW_NvgjOzFEeFwxY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "526419283550-hrhehdbr44vnb19tvqmgqhhb89151i2l.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "526419283550-38f5q7us2l8p34s6f3rfq8c99b1365jg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.planifierapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

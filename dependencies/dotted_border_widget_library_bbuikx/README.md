@@ -1,4 +1,4 @@
-# planifier
+# dotted-border-widget-library
 
 A new Flutter project.
 
