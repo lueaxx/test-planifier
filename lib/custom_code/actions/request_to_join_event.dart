@@ -32,8 +32,8 @@ Future<bool> requestToJoinEvent(
     // 2. Si no existe, crea la solicitud de ingreso.
     await participantDocRef.set({
       'user_ref': userRef,
-      'user_name': userName,
-      'user_email': userEmail,
+      'display_name': userName,
+      'email': userEmail,
       'status': 'pending',
       'role': null,
       'added_at': FieldValue.serverTimestamp(),
