@@ -328,7 +328,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) {
         name: SolicitudesWidget.routeName,
         path: SolicitudesWidget.routePath,
         requireAuth: true,
-        builder: (context, params) => SolicitudesWidget(),
+        builder: (context, params) => SolicitudesWidget(
+          eventRef: params.getParam(
+            'eventRef',
+            ParamType.DocumentReference,
+            isList: false,
+            collectionNamePath: ['eventos'],
+          ),
+        ),
       ),
       FFRoute(
         name: CalendarioWidget.routeName,

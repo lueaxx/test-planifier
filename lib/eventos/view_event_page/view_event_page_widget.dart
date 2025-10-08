@@ -1930,72 +1930,100 @@ class _ViewEventPageWidgetState extends State<ViewEventPageWidget> {
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 10.0),
-                                            child: FFButtonWidget(
-                                              onPressed: () async {
-                                                context.pushNamed(
-                                                    SolicitudesWidget
-                                                        .routeName);
-                                              },
-                                              text:
-                                                  'Solicitudes                                                                             ',
-                                              icon: Icon(
-                                                Icons.arrow_forward_ios,
-                                                size: 15.0,
-                                              ),
-                                              options: FFButtonOptions(
-                                                width: 360.0,
-                                                height: 40.0,
-                                                padding: EdgeInsets.all(14.0),
-                                                iconAlignment:
-                                                    IconAlignment.end,
-                                                iconPadding:
-                                                    EdgeInsetsDirectional
-                                                        .fromSTEB(
-                                                            0.0, 0.0, 0.0, 0.0),
-                                                color: Colors.white,
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
-                                                        .override(
-                                                          font: GoogleFonts
-                                                              .publicSans(
-                                                            fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
-                                                                    .fontWeight,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
-                                                                    .fontStyle,
-                                                          ),
-                                                          color:
-                                                              Color(0xFF353535),
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmall
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmall
-                                                                  .fontStyle,
-                                                        ),
-                                                elevation: 0.0,
-                                                borderRadius: BorderRadius.only(
-                                                  bottomLeft:
-                                                      Radius.circular(12.0),
-                                                  bottomRight:
-                                                      Radius.circular(12.0),
-                                                  topLeft:
-                                                      Radius.circular(12.0),
-                                                  topRight:
-                                                      Radius.circular(12.0),
+                                            child: FutureBuilder<int>(
+                                              future:
+                                                  queryParticipantesRecordCount(
+                                                parent: widget.eventRef,
+                                                queryBuilder:
+                                                    (participantesRecord) =>
+                                                        participantesRecord.where(
+                                                  'status',
+                                                  isEqualTo: 'pending',
                                                 ),
                                               ),
+                                              builder: (context, snapshot) {
+                                                if (!snapshot.hasData) {
+                                                  return SizedBox(
+                                                    width: 50.0,
+                                                    height: 50.0,
+                                                    child: CircularProgressIndicator(
+                                                      valueColor:
+                                                          AlwaysStoppedAnimation<Color>(
+                                                        FlutterFlowTheme.of(context)
+                                                            .primary,
+                                                      ),
+                                                    ),
+                                                  );
+                                                }
+                                                final pendingCount =
+                                                    snapshot.data!;
+                                                final pendingLabel =
+                                                    pendingCount == 1
+                                                        ? '1 pendiente'
+                                                        : '${pendingCount.toString()} pendientes';
+
+                                                return FFButtonWidget(
+                                                  onPressed: () async {
+                                                    context.pushNamed(
+                                                      SolicitudesWidget.routeName,
+                                                      queryParameters: {
+                                                        'eventRef': serializeParam(
+                                                          widget.eventRef,
+                                                          ParamType.DocumentReference,
+                                                        ),
+                                                      }.withoutNulls,
+                                                    );
+                                                  },
+                                                  text:
+                                                      'Solicitudes ($pendingLabel)',
+                                                  icon: Icon(
+                                                    Icons.arrow_forward_ios,
+                                                    size: 15.0,
+                                                  ),
+                                                  options: FFButtonOptions(
+                                                    width: 360.0,
+                                                    height: 40.0,
+                                                    padding: EdgeInsets.all(14.0),
+                                                    iconAlignment:
+                                                        IconAlignment.end,
+                                                    iconPadding:
+                                                        EdgeInsetsDirectional.fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                    color: Colors.white,
+                                                    textStyle:
+                                                        FlutterFlowTheme.of(context)
+                                                            .titleSmall
+                                                            .override(
+                                                              font: GoogleFonts
+                                                                  .publicSans(
+                                                                fontWeight:
+                                                                    FlutterFlowTheme.of(context)
+                                                                        .titleSmall
+                                                                        .fontWeight,
+                                                                fontStyle:
+                                                                    FlutterFlowTheme.of(context)
+                                                                        .titleSmall
+                                                                        .fontStyle,
+                                                              ),
+                                                              color: Color(0xFF353535),
+                                                              letterSpacing: 0.0,
+                                                              fontWeight: FlutterFlowTheme.of(context)
+                                                                  .titleSmall
+                                                                  .fontWeight,
+                                                              fontStyle: FlutterFlowTheme.of(context)
+                                                                  .titleSmall
+                                                                  .fontStyle,
+                                                            ),
+                                                    elevation: 0.0,
+                                                    borderRadius: BorderRadius.only(
+                                                      bottomLeft: Radius.circular(12.0),
+                                                      bottomRight: Radius.circular(12.0),
+                                                      topLeft: Radius.circular(12.0),
+                                                      topRight: Radius.circular(12.0),
+                                                    ),
+                                                  ),
+                                                );
+                                              },
                                             ),
                                           ),
                                         ),
